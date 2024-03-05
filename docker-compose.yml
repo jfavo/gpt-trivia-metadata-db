@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=p@ssw0rd!
+      - POSTGRES_USER=main
+      - POSTGRES_DB=gpt-trivia-metadata-db
+
+volumes:
+  db-data:
