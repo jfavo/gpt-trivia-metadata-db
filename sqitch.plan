@@ -1,3 +1,5 @@
 %syntax-version=1.0.0
 %project=metadata-db
 %uri=https://github.com/jfavo/gpt-trivia-metadata-db
+
+appschema 2024-03-05T19:35:35Z root <root@455eae4d6f73> # Add schema for gpt-trivia metadata
