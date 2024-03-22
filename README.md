@@ -9,4 +9,4 @@ This repo contains the Database change management for the GPT Trivia metadata DB
 
 ## Schema
 
-TODO: Create the schema and schema diagram for the DB
+![DB Schema](docs/db-diagram.png)
