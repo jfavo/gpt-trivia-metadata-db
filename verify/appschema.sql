@@ -48,14 +48,21 @@ SELECT EXISTS (
     SELECT 1
     FROM pg_tables
     WHERE schemaname = 'public'
-    AND tablename = 'player_pool'
+    AND tablename = 'reactions'
 );
 
 SELECT EXISTS (
     SELECT 1
     FROM pg_tables
     WHERE schemaname = 'public'
-    AND tablename = 'match'
+    AND tablename = 'player_pools'
+);
+
+SELECT EXISTS (
+    SELECT 1
+    FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename = 'matches'
 );
 
 SELECT EXISTS (
@@ -63,6 +70,20 @@ SELECT EXISTS (
     FROM pg_tables
     WHERE schemaname = 'public'
     AND tablename = 'match_questions'
+);
+
+SELECT EXISTS (
+    SELECT 1
+    FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename = 'match_histories'
+);
+
+-- Verify our created Enum type exists
+SELECT EXISTS (
+    SELECT 1
+    FROM pg_type
+    WHERE typname = 'reaction_type'
 );
 
 ROLLBACK;
