@@ -2,6 +2,12 @@
 
 BEGIN;
 
+CREATE TYPE "reaction_type" AS ENUM (
+  'like',
+  'dislike',
+  'custom'
+);
+
 CREATE TABLE "follows" (
   "following_user_id" integer,
   "followed_user_id" integer,
@@ -42,12 +48,19 @@ CREATE TABLE "posts" (
   "edited_at" timestamp
 );
 
-CREATE TABLE "player_pool" (
+CREATE TABLE "reactions" (
+  "id" integer PRIMARY KEY,
+  "user_id" integer,
+  "post_id" integer,
+  "type" reaction_type
+);
+
+CREATE TABLE "player_pools" (
   "id" integer PRIMARY KEY,
   "user_id" integer
 );
 
-CREATE TABLE "match" (
+CREATE TABLE "matches" (
   "id" integer PRIMARY KEY,
   "player_pool_id" integer,
   "started_at" timestamp,
@@ -60,17 +73,31 @@ CREATE TABLE "match_questions" (
   "answer" text
 );
 
+CREATE TABLE "match_histories" (
+  "id" integer PRIMARY KEY,
+  "match_id" integer,
+  "match_data" jsonb
+);
+
+COMMENT ON COLUMN "posts"."body" IS 'Content of the post';
+
 ALTER TABLE "posts" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
 ALTER TABLE "follows" ADD FOREIGN KEY ("following_user_id") REFERENCES "users" ("id");
 
 ALTER TABLE "follows" ADD FOREIGN KEY ("followed_user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "player_pool" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+ALTER TABLE "player_pools" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "match" ADD FOREIGN KEY ("player_pool_id") REFERENCES "player_pool" ("id");
+ALTER TABLE "reactions" ADD FOREIGN KEY ("post_id") REFERENCES "posts" ("id");
 
-ALTER TABLE "match_questions" ADD FOREIGN KEY ("match_id") REFERENCES "match" ("id");
+ALTER TABLE "reactions" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "matches" ADD FOREIGN KEY ("player_pool_id") REFERENCES "player_pools" ("id");
+
+ALTER TABLE "match_questions" ADD FOREIGN KEY ("match_id") REFERENCES "matches" ("id");
+
+ALTER TABLE "match_histories" ADD FOREIGN KEY ("match_id") REFERENCES "matches" ("id");
 
 ALTER TABLE "friend_requests" ADD FOREIGN KEY ("friend_user_requester") REFERENCES "users" ("id");
 
