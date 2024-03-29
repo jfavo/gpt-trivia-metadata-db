@@ -15,4 +15,6 @@ DROP TABLE "users";
 
 DROP TYPE "reaction_type";
 
+DROP TYPE "role_type";
+
 COMMIT;
