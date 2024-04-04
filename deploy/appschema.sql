@@ -138,4 +138,6 @@ CREATE INDEX match_player_pool_id_idx ON matches (player_pool_id);
 
 CREATE INDEX player_pools_user_id_idx ON player_pools (user_id);
 
+CREATE UNIQUE INDEX friends_userid1_userid2_idx on friends (user_id_1, user_id_2);
+
 COMMIT;
