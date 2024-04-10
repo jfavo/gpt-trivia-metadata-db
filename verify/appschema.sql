@@ -76,7 +76,14 @@ SELECT EXISTS (
     SELECT 1
     FROM pg_tables
     WHERE schemaname = 'public'
-    AND tablename = 'match_histories'
+    AND tablename = 'match_subcategories'
+);
+
+SELECT EXISTS (
+    SELECT 1
+    FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename = 'match_categories'
 );
 
 -- Verify our created Enum type exists
