@@ -8,9 +8,11 @@ DROP TABLE "follows";
 DROP TABLE "reactions";
 DROP TABLE "posts";
 DROP TABLE "match_questions";
-DROP TABLE "match_histories";
-DROP TABLE "matches";
+DROP TABLE "match_subcategories";
+DROP TABLE "match_categories";
+
 DROP TABLE "player_pools";
+DROP TABLE "matches";
 DROP TABLE "users";
 
 DROP TYPE "reaction_type";
